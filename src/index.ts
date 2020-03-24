@@ -5,16 +5,17 @@
 
 import {DMLog} from "./utils/dmlog";
 
-function getModuleName(fnPtr: NativePointer) {
+function getModuleInfoByPtr(fnPtr: NativePointer) {
     var modules = Process.enumerateModules();
-    var modname = null;
+    var modname = null, base = null;
     modules.forEach(function (mod) {
         if (mod.base <= fnPtr && fnPtr.toInt32() <= mod.base.toInt32() + mod.size) {
             modname = mod.name;
+            base = mod.base;
             return false;
         }
     });
-    return modname;
+    return [modname, base];
 }
 
 const tag = 'fridaRegstNtv';
@@ -46,11 +47,11 @@ function hook_registNatives() {
             for (var i = 0; i < methodcount; i ++ ) {
                 var idx = i * 12;
                 var fnPtr = methods.add(idx + 8).readPointer();
-                const moduleName = getModuleName(fnPtr);
+                const infoArr = getModuleInfoByPtr(fnPtr);
                 console.log("name: " + methods.add(idx).readPointer().readCString()
                     + " signature: " + methods.add(idx + 4).readPointer().readCString()
                     + " fnPtr: " + fnPtr
-                    + " modulename: " + moduleName
+                    + " modulename: " + infoArr[0] + " -> base: " + infoArr[1]
                 );
             }
 

@@ -15,5 +15,5 @@ npm run build
 # 使用
 
 ```bash
-frida -U -l _fridaRegstNtv.js com.package.name
+frida -U -l _fridaRegstNtv.js -f com.package.name --no-pause
 ```
