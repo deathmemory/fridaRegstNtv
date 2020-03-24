@@ -1,0 +1,17 @@
+{
+  "name": "fridaRegstNtv",
+  "version": "1.0.0",
+  "description": "本项目是利用 frida 获取 Jni RegisterNatives 动态注册的函数，并将其函数地址和对应的 so 打印出来",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "frida-compile src/index.ts -o _fridaRegstNtv.js",
+    "watch": "frida-compile src/index.ts -o _fridaRegstNtv.js -w"
+  },
+  "devDependencies": {
+    "@types/frida-gum": "^15.0.0",
+    "@types/node": "^13.7.0",
+    "frida-compile": "^9.1.0"
+  }
+}
