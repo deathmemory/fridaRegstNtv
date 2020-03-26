@@ -5,6 +5,8 @@
 
 import {DMLog} from "./utils/dmlog";
 
+const tag = 'fridaRegstNtv';
+
 function getModuleInfoByPtr(fnPtr: NativePointer) {
     var modules = Process.enumerateModules();
     var modname = null, base = null;
@@ -17,8 +19,6 @@ function getModuleInfoByPtr(fnPtr: NativePointer) {
     });
     return [modname, base];
 }
-
-const tag = 'fridaRegstNtv';
 
 function hook_registNatives() {
 
@@ -41,18 +41,23 @@ function hook_registNatives() {
             var methods = args[2];
             var methodcount = args[3].toInt32();
             var name = env.getClassName(args[1]);
-            console.log("=== class: " + name + " ====");
+            console.log("==== class: " + name + " ====");
 
             console.log("==== methods: " + methods + " nMethods: " + methodcount + " ====");
             for (var i = 0; i < methodcount; i ++ ) {
                 var idx = i * 12;
                 var fnPtr = methods.add(idx + 8).readPointer();
                 const infoArr = getModuleInfoByPtr(fnPtr);
-                console.log("name: " + methods.add(idx).readPointer().readCString()
-                    + " signature: " + methods.add(idx + 4).readPointer().readCString()
-                    + " fnPtr: " + fnPtr
-                    + " modulename: " + infoArr[0] + " -> base: " + infoArr[1]
-                );
+                const modulename = infoArr[0];
+                const modulebase = infoArr[1];
+                var logstr = "name: " + methods.add(idx).readPointer().readCString()
+                    + ", signature: " + methods.add(idx + 4).readPointer().readCString()
+                    + ", fnPtr: " + fnPtr
+                    + ", modulename: " + modulename + " -> base: " + modulebase;
+                if (null != modulebase) {
+                    logstr += ", offset: " + fnPtr.sub(modulebase);
+                }
+                DMLog.i(tag, logstr);
             }
 
         }
