@@ -3,7 +3,7 @@
  * desc: 本项目是利用 frida 获取 Jni RegisterNatives 动态注册的函数，并将其函数地址和对应的 so 打印出来
  */
 
-import {DMLog} from "./utils/dmlog";
+import { DMLog } from "./utils/dmlog";
 
 const tag = 'fridaRegstNtv';
 
@@ -36,22 +36,24 @@ function hook_registNatives() {
      jint RegisterNatives(JNIEnv* env, jclass clazz, const JNINativeMethod* methods, jint nMethods)
      */
     Interceptor.attach(nativePointer, {
-        onEnter: function(args) {
+        onEnter: function (args) {
             var env = Java.vm.getEnv();
+            var p_size = Process.pointerSize;
             var methods = args[2];
             var methodcount = args[3].toInt32();
             var name = env.getClassName(args[1]);
             console.log("==== class: " + name + " ====");
 
             console.log("==== methods: " + methods + " nMethods: " + methodcount + " ====");
-            for (var i = 0; i < methodcount; i ++ ) {
-                var idx = i * 12;
-                var fnPtr = methods.add(idx + 8).readPointer();
+            for (var i = 0; i < methodcount; i++) {
+
+                var idx = i * p_size * 3;
+                var fnPtr = methods.add(idx + p_size * 2).readPointer();
                 const infoArr = getModuleInfoByPtr(fnPtr);
                 const modulename = infoArr[0];
                 const modulebase = infoArr[1];
                 var logstr = "name: " + methods.add(idx).readPointer().readCString()
-                    + ", signature: " + methods.add(idx + 4).readPointer().readCString()
+                    + ", signature: " + methods.add(idx + p_size).readPointer().readCString()
                     + ", fnPtr: " + fnPtr
                     + ", modulename: " + modulename + " -> base: " + modulebase;
                 if (null != modulebase) {
