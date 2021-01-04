@@ -11,18 +11,18 @@ npm build 后，用 Pycharm 打开编辑，可以看到 frida api 代码补全�
 [INFO][fridaRegstNtv]: hello, i am loaded
 handle: 0xefb71cbc
 register: 0xef9ba4f1
-==== class: com.meituan.android.cipstorage.MMKV ====
+==== class: com.xxxx.class.name ====
 ==== methods: 0xcd52d428 nMethods: 41 ====
-[INFO][fridaRegstNtv]: name: initialize, signature: ()V, fnPtr: 0xcd50b6bd, modulename: libcips.so -> base: 0xcd505000, offset: 0x66bd
-[INFO][fridaRegstNtv]: name: onExit, signature: ()V, fnPtr: 0xcd50b6c7, modulename: libcips.so -> base: 0xcd505000, offset: 0x66c7
-[INFO][fridaRegstNtv]: name: getMMKVWithID, signature: (Ljava/lang/String;ILjava/lang/String;)J, fnPtr: 0xcd50b6d1, modulename: libcips.so -> base: 0xcd505000, offset: 0x66d1                   
-[INFO][fridaRegstNtv]: name: encodeBool, signature: (JLjava/lang/String;Z)Z, fnPtr: 0xcd50b76d, modulename: libcips.so -> base: 0xcd505000, offset: 0x676d
-[INFO][fridaRegstNtv]: name: decodeBool, signature: (JLjava/lang/String;Z)Z, fnPtr: 0xcd50b7bf, modulename: libcips.so -> base: 0xcd505000, offset: 0x67bf
-[INFO][fridaRegstNtv]: name: encodeInt, signature: (JLjava/lang/String;I)Z, fnPtr: 0xcd50b80f, modulename: libcips.so -> base: 0xcd505000, offset: 0x680f
-[INFO][fridaRegstNtv]: name: decodeInt, signature: (JLjava/lang/String;I)I, fnPtr: 0xcd50b85b, modulename: libcips.so -> base: 0xcd505000, offset: 0x685b
-[INFO][fridaRegstNtv]: name: encodeLong, signature: (JLjava/lang/String;J)Z, fnPtr: 0xcd50b8a5, modulename: libcips.so -> base: 0xcd505000, offset: 0x68a5
-[INFO][fridaRegstNtv]: name: decodeLong, signature: (JLjava/lang/String;J)J, fnPtr: 0xcd50b8f7, modulename: libcips.so -> base: 0xcd505000, offset: 0x68f7
-[INFO][fridaRegstNtv]: name: encodeFloat, signature: (JLjava/lang/String;F)Z, fnPtr: 0xcd50b953, modulename: libcips.so -> base: 0xcd505000, offset: 0x6953
+[INFO][fridaRegstNtv]: name: initialize, signature: ()V, fnPtr: 0xcd50b6bd, modulename: libxxxx.so -> base: 0xcd505000, offset: 0x66bd
+[INFO][fridaRegstNtv]: name: onExit, signature: ()V, fnPtr: 0xcd50b6c7, modulename: libxxxx.so -> base: 0xcd505000, offset: 0x66c7
+[INFO][fridaRegstNtv]: name: getMMKVWithID, signature: (Ljava/lang/String;ILjava/lang/String;)J, fnPtr: 0xcd50b6d1, modulename: libxxxx.so -> base: 0xcd505000, offset: 0x66d1                   
+[INFO][fridaRegstNtv]: name: encodeBool, signature: (JLjava/lang/String;Z)Z, fnPtr: 0xcd50b76d, modulename: libxxxx.so -> base: 0xcd505000, offset: 0x676d
+[INFO][fridaRegstNtv]: name: decodeBool, signature: (JLjava/lang/String;Z)Z, fnPtr: 0xcd50b7bf, modulename: libxxxx.so -> base: 0xcd505000, offset: 0x67bf
+[INFO][fridaRegstNtv]: name: encodeInt, signature: (JLjava/lang/String;I)Z, fnPtr: 0xcd50b80f, modulename: libxxxx.so -> base: 0xcd505000, offset: 0x680f
+[INFO][fridaRegstNtv]: name: decodeInt, signature: (JLjava/lang/String;I)I, fnPtr: 0xcd50b85b, modulename: libxxxx.so -> base: 0xcd505000, offset: 0x685b
+[INFO][fridaRegstNtv]: name: encodeLong, signature: (JLjava/lang/String;J)Z, fnPtr: 0xcd50b8a5, modulename: libxxxx.so -> base: 0xcd505000, offset: 0x68a5
+[INFO][fridaRegstNtv]: name: decodeLong, signature: (JLjava/lang/String;J)J, fnPtr: 0xcd50b8f7, modulename: libxxxx.so -> base: 0xcd505000, offset: 0x68f7
+[INFO][fridaRegstNtv]: name: encodeFloat, signature: (JLjava/lang/String;F)Z, fnPtr: 0xcd50b953, modulename: libxxxx.so -> base: 0xcd505000, offset: 0x6953
 ......
 ```
 
